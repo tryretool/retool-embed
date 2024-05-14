@@ -1,0 +1,36 @@
+{
+    "name": "retool-embed-client",
+    "version": "0.1.0",
+    "private": false,
+    "respository": {
+        "type": "git",
+        "url": ""
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    ],
+    "keywords": [
+        "retool",
+        "embed-retool"
+    ],
+
+    "description": "A client for embedding Retool apps in your own web app",
+    "devDependencies": {
+        "@babel/cli": "^7.18.6",
+        "@babel/core": "^7.18.6",
+        "@babel/plugin-proposal-class-properties": "^7.18.6",
+        "@babel/preset-env": "^7.18.6",
+        "@babel/preset-typescript": "^7.18.6",
+        "typescript": "^5.4.5"
+    },
+    "scripts": {
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "npm run type-check -- --watch",
+        "build": "npm run build:types && npm run build:js",
+        "build:types": "tsc --emitDeclarationOnly",
+        "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline"
+    }
+}
