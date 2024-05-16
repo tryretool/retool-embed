@@ -1,14 +1,18 @@
-import { RetoolEmbedClient } from "RetoolEmbedClient"
+import { RetoolEmbedClient } from "./RetoolEmbedClient"
 
 export type RetoolEmbedClientAttributes = {
     src: string,
-    height?: string,
-    width?: string,
+    style?: string,
     onData?: (data: any) => void
 }
 export function createRetoolEmbedClient(attributes: RetoolEmbedClientAttributes) {
-    customElements.define('retool-embed-client', RetoolEmbedClient)
+    if (!customElements.get('retool-embed-client')) {
+        customElements.define('retool-embed-client', RetoolEmbedClient)
+    }
     const client = document.createElement('retool-embed-client') as RetoolEmbedClient
     client.setAttribute('src', attributes.src)
+    client.customStyle = attributes.style
+
     client.onData = attributes.onData
+    return client
 }
