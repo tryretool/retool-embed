@@ -1,6 +1,6 @@
 # Retool Embed Client (JavaScript SDK)
 
-This package is intended to help developers embed [Retool]() apps in their existing web applications. These apps may either be [Embed](https://docs.retool.com/apps/external/quickstarts/embed) apps, or [Public](https://docs.retool.com/apps/web/guides/embed-apps) apps. 
+This package is intended to help developers embed [Retool](https://retool.com) apps in their existing web applications. These apps may either be [Embed](https://docs.retool.com/apps/external/quickstarts/embed) apps, or [Public](https://docs.retool.com/apps/web/guides/embed-apps) apps. 
 
 ## Installation
 
