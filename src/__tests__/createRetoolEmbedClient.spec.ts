@@ -41,5 +41,4 @@ describe("createRetoolEmbedClient", () => {
     expect(iframe?.getAttribute("style")).toBe("border: 1px solid red");
 
   });
-  // TODO: add tests for onData, onMesssage -- need to understand mocking this w/ happy-dom
 });

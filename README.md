@@ -7,13 +7,23 @@ This package is intended to help developers embed [Retool](https://retool.com) a
 `npm -i --save-dev @tryretool/retool-embed-client`
 
 
-## Supported arguments
+## Usage
+
+```JavaScript
+
+createRetoolEmbedClient({
+    src: 'https://example.retool.com/embedded/public/5a34f0e4-1e19-45bd-9d0f-9612d42eed17',
+});
+
+```
+
+### Supported arguments
 
 | Argument    | Expected input |
 |-------------|----------------|
 | `src`       | **Required** `string` URL of the Retool app |
 | `style`     | **Optional** `string` A valid style parameter for the iframe | 
-| `data`      | **Optional** `Object` Made available in the Retool application. When an embedded Retool application runs a Parent Window Query, `RetoolEmbedClient` will check if `data` contains a key matching the Parent Window Query's selector, and if so, return that value to the query. See [Embed]() docs for an example. |
+| `data`      | **Optional** `Object` Made available in the Retool application. When an embedded Retool application runs a Parent Window Query, `RetoolEmbedClient` will check if `data` contains a key matching the Parent Window Query's selector, and if so, return that value to the query. See [our docs](https://docs.retool.com/apps/web/guides/embed-apps) for an example. |
 | `onData`    | **Optional** `function` Callback executed with data when the embedded Retool application calls `parent.postMessage(data)` from a JavaScript Query. | 
 
 ## Embed example
