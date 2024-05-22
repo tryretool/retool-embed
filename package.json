@@ -1,10 +1,10 @@
 {
-    "name": "retool-embed-client",
+    "name": "@tryretool/retool-embed-client",
     "version": "0.1.0",
     "private": false,
     "respository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/tryretool/retool-embed-client"
     },
     "licenses": [
         {
@@ -16,22 +16,25 @@
         "retool",
         "embed-retool"
     ],
-
-    "description": "A client for embedding Retool apps in your own web app",
+    "description": "A client for embedding Retool apps in your existing web app",
     "devDependencies": {
         "@babel/cli": "^7.18.6",
         "@babel/core": "^7.18.6",
         "@babel/plugin-proposal-class-properties": "^7.18.6",
         "@babel/preset-env": "^7.18.6",
         "@babel/preset-typescript": "^7.18.6",
+        "@happy-dom/jest-environment": "^14.11.0",
+        "@types/jest": "^29.5.12",
+        "jest": "^29.4.1",
         "typescript": "^5.4.5"
     },
     "scripts": {
         "type-check": "tsc --noEmit",
         "type-check:watch": "npm run type-check -- --watch",
+        "test": "jest",
         "build": "npm run build:types && npm run build:js",
         "build:types": "tsc --emitDeclarationOnly",
         "build:js": "babel src --out-dir dst --extensions \".ts,.tsx\" --source-maps inline",
-        "publish:npm": "rm -rf dst && mkdir dst && npm run build -d dst --copy-files && mv ./dst/createRetoolEmbedClient.js ./dst/index.js && cp ./package.json ./dst/package.json && cp ./README.md ./dst/README.md"
+        "build:npm": "rm -rf dst && mkdir dst && npm run build -d dst --copy-files && mv ./dst/createRetoolEmbedClient.js ./dst/index.js && cp ./package.json ./dst/package.json && cp ./README.md ./dst/README.md && rm -rf ./dst/__tests__"
     }
 }
