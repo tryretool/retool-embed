@@ -1,13 +1,20 @@
-# Retool Embed Client (JavaScript SDK)
+# Retool Embed Client SDK
 
-This package is intended to help developers embed [Retool](https://retool.com) apps in their existing web applications. These apps may either be [Embed](https://docs.retool.com/apps/external/quickstarts/embed) apps, or [Public](https://docs.retool.com/apps/web/guides/embed-apps) apps. 
+Easily embed [Retool](https://retool.com) apps into your existing web applications to extend their functionality. 
+
+If your Retool applications don't require authentication, you can generate a [public link](https://docs.retool.com/apps/web/guides/embed-apps) for your source URL. You can also authenticate users into into embedded Retool apps by [integrating Retool with your identity provider](https://docs.retool.com/apps/web/guides/embed-apps#user-authentication-with-an-identity-provider), or [generating](https://docs.retool.com/apps/external/quickstarts/embed#authentication-flow) a secure embed URL through the Retool API. 
 
 ## Installation
 
+Install the SDK via npm:
+
 `npm -i --save-dev @tryretool/retool-embed-client`
 
+## Quickstart
 
-## Usage
+### Embedding a Retool app
+
+To embed a Retool app, use the `createRetoolEmbedClient` function.
 
 ```JavaScript
 
@@ -17,41 +24,19 @@ createRetoolEmbedClient({
 
 ```
 
-### Supported arguments
+### Configuration options
 
-| Argument    | Expected input |
-|-------------|----------------|
-| `src`       | **Required** `string` URL of the Retool app |
-| `style`     | **Optional** `string` A valid style parameter for the iframe | 
-| `data`      | **Optional** `Object` Made available in the Retool application. When an embedded Retool application runs a Parent Window Query, `RetoolEmbedClient` will check if `data` contains a key matching the Parent Window Query's selector, and if so, return that value to the query. See [our docs](https://docs.retool.com/apps/web/guides/embed-apps) for an example. |
-| `onData`    | **Optional** `function` Callback executed with data when the embedded Retool application calls `parent.postMessage(data)` from a JavaScript Query. | 
 
-## Embed example
+| Argument    | Type                | Description              |
+|-------------|---------------------|--------------------------|
+| `src`       | `string` (required) | URL of the Retool app    |
+| `style`     | `string` (optional) | A valid style parameter  |
+| `data`      | `Object` (optional) | Object to pass from the parent app into Retool. Within your Retool app, use a [Parent Window Query](https://docs.retool.com/apps/web/guides/embed-apps#pass-data-to-an-embedded-app) to reference keys in the `data` object. |
+| `onData`    | `function` (optional) | Callback executed with data when the embedded Retool application calls `parent.postMessage(data)` from a JavaScript Query. | 
 
-```JavaScript
-const container = document.createElement('div')
-app.appendChild(container)
+## Examples
 
-const getEmbedUrl = async () => {...}
-
-getEmbedUrl().then((retoolEmbedUrl) => {
-    embeddedRetool = createRetoolEmbedClient({
-        src: retoolEmbedUrl,
-        style: "border: 1px solid blue; height: 100%; width: 100%;",
-        data: {dataValue: false},
-        onData: (data) => {
-            mockFunction(data)
-        }
-    });
-    container.appendChild(embeddedRetool)
-});
-```
-
-### A note on getting an embed URL 
-
-This implementation assumes you have developed a way of providing your application with an [Embed](https://docs.retool.com/apps/external/quickstarts/embed) URL. This implementation should follow our [docs](https://docs.retool.com/apps/external/quickstarts/embed#3-create-an-embed-url) and be run on a secure, authenticated backend server, before it's provided to your hosting frontend application. 
-
-## Public apps example
+### Public link 
 
 ```JavaScript
 const container = document.createElement('div')
@@ -70,3 +55,28 @@ embeddedRetool = createRetoolEmbedClient({
 container.appendChild(embeddedRetool)
 ```
 
+### Authenticated Embed URL 
+
+```JavaScript
+const container = document.createElement('div')
+app.appendChild(container)
+
+// Client calls your backend, which makes request to Retool for the embed URL.
+const getEmbedUrl = async () => {...}
+
+getEmbedUrl().then((retoolEmbedUrl) => {
+    embeddedRetool = createRetoolEmbedClient({
+        src: retoolEmbedUrl,
+        style: "border: 1px solid blue; height: 100%; width: 100%;",
+        data: {dataValue: false},
+        onData: (data) => {
+            mockFunction(data)
+        }
+    });
+    container.appendChild(embeddedRetool)
+});
+```
+
+#### Generating an embed URL 
+
+Ensure you generate the embed URL on a secure, authenticated backend server. Follow our[documentation](https://docs.retool.com/apps/external/quickstarts/embed#3-create-an-embed-url) for detailed instructions.
