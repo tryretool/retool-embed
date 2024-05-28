@@ -1,4 +1,4 @@
-# Retool Embed Client SDK
+# Retool Embed SDK
 
 Easily embed [Retool](https://retool.com) apps into your existing web applications to extend their functionality. 
 
@@ -8,17 +8,17 @@ If your Retool applications don't require authentication, you can generate a [pu
 
 Install the SDK via npm:
 
-`npm -i --save-dev @tryretool/retool-embed-client`
+`npm -i --save-dev @tryretool/retool-embed`
 
 ## Quickstart
 
 ### Embedding a Retool app
 
-To embed a Retool app, use the `createRetoolEmbedClient` function.
+To embed a Retool app, use the `createRetoolEmbed` function.
 
 ```JavaScript
 
-createRetoolEmbedClient({
+createRetoolEmbed({
     src: 'https://example.retool.com/embedded/public/5a34f0e4-1e19-45bd-9d0f-9612d42eed17',
 });
 
@@ -44,7 +44,7 @@ app.appendChild(container)
 
 const publicAppUrl = 'https://example.retool.com/embedded/public/5a34f0e4-1e19-45bd-9d0f-9612d42eed17'
 
-embeddedRetool = createRetoolEmbedClient({
+embeddedRetool = createRetoolEmbed({
     src: publicAppUrl,
     style: "border: 1px solid blue; height: 100%; width: 100%;",
     data: {dataValue: false},
@@ -65,7 +65,7 @@ app.appendChild(container)
 const getEmbedUrl = async () => {...}
 
 getEmbedUrl().then((retoolEmbedUrl) => {
-    embeddedRetool = createRetoolEmbedClient({
+    embeddedRetool = createRetoolEmbed({
         src: retoolEmbedUrl,
         style: "border: 1px solid blue; height: 100%; width: 100%;",
         data: {dataValue: false},

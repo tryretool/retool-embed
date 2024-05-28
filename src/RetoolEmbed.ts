@@ -4,7 +4,7 @@ type WatcherValue = {
   pageName: string;
   queryId: string;
 };
-export class RetoolEmbedClient extends HTMLElement {
+export class RetoolEmbed extends HTMLElement {
   private iframe: HTMLIFrameElement;
   private elementWatchers: Record<string, WatcherValue> = {};
   public onData?: (data: any) => void;

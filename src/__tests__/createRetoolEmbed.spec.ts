@@ -1,14 +1,14 @@
 "use strict";
 
-import { createRetoolEmbedClient } from "../createRetoolEmbedClient";
+import { createRetoolEmbed } from "../createRetoolEmbed";
 
-describe("createRetoolEmbedClient", () => {
+describe("createRetoolEmbed", () => {
   beforeEach(() => {
     document.body.innerHTML = "";
   });
 
   it("has the correct src for its iframe", () => {
-    const client = createRetoolEmbedClient({
+    const client = createRetoolEmbed({
       src: "https://test.onretool.com/embedded/authed/1234",
     });
 
@@ -17,7 +17,7 @@ describe("createRetoolEmbedClient", () => {
     );
 
     document.body.appendChild(client);
-    const clientElement = document.querySelector("retool-embed-client");
+    const clientElement = document.querySelector("retool-embed");
     expect(clientElement).not.toBeNull();
     const iframe = clientElement?.querySelector("iframe");
     expect(iframe).not.toBeNull();
@@ -27,7 +27,7 @@ describe("createRetoolEmbedClient", () => {
   });
 
   it("has the correct style for its iframe", () => {
-    const client = createRetoolEmbedClient({
+    const client = createRetoolEmbed({
       src: "https://test.onretool.com/embedded/authed/1234",
       style: "border: 1px solid red",
     });
