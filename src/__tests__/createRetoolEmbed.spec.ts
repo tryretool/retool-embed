@@ -1,6 +1,6 @@
 "use strict";
 
-import { createRetoolEmbedClient } from "../createRetoolEmbedClient";
+import { createRetoolEmbed } from "../createRetoolEmbed";
 
 describe("createRetoolEmbedClient", () => {
   beforeEach(() => {
@@ -8,7 +8,7 @@ describe("createRetoolEmbedClient", () => {
   });
 
   it("has the correct src for its iframe", () => {
-    const client = createRetoolEmbedClient({
+    const client = createRetoolEmbed({
       src: "https://test.onretool.com/embedded/authed/1234",
     });
 
@@ -27,7 +27,7 @@ describe("createRetoolEmbedClient", () => {
   });
 
   it("has the correct style for its iframe", () => {
-    const client = createRetoolEmbedClient({
+    const client = createRetoolEmbed({
       src: "https://test.onretool.com/embedded/authed/1234",
       style: "border: 1px solid red",
     });
