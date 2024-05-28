@@ -2,7 +2,7 @@
 
 import { createRetoolEmbed } from "../createRetoolEmbed";
 
-describe("createRetoolEmbedClient", () => {
+describe("createRetoolEmbed", () => {
   beforeEach(() => {
     document.body.innerHTML = "";
   });
@@ -17,7 +17,7 @@ describe("createRetoolEmbedClient", () => {
     );
 
     document.body.appendChild(client);
-    const clientElement = document.querySelector("retool-embed-client");
+    const clientElement = document.querySelector("retool-embed");
     expect(clientElement).not.toBeNull();
     const iframe = clientElement?.querySelector("iframe");
     expect(iframe).not.toBeNull();
