@@ -77,6 +77,72 @@ getEmbedUrl().then((retoolEmbedUrl) => {
 });
 ```
 
+
+### Full example: Two-way communication between Retool and the embedding application
+
+```JavaScript
+import { createRetoolEmbed } from "@tryretool/retool-embed";
+
+let embeddedRetool
+
+const advancedRetool = (value) => {
+    embeddedRetool.data = {advancedUser: value}
+}
+
+let app = document.querySelector('#app')
+
+// advanced user toggle 
+const advancedCheckbox = document.createElement('input')
+advancedCheckbox.type = 'checkbox'
+advancedCheckbox.onclick = () => advancedRetool(advancedCheckbox.checked)
+const advancedLabel = document.createElement('label')
+advancedLabel.innerText = 'Advanced User'
+app.appendChild(advancedCheckbox)
+app.appendChild(advancedLabel)
+
+const eventContainer = document.createElement('div')
+eventContainer.className = 'eventContainer'
+app.appendChild(eventContainer)
+
+// iframe container
+let container = document.createElement('div')
+container.className = 'iframeContainer'
+app.appendChild(container)
+
+// handle event from retool
+const handleRetoolClick = (data) => {
+    eventContainer.classList.add('active')
+    eventContainer.innerText = data
+}
+
+// set up retool
+const getEmbedUrl = async () => {
+    const res = await fetch('http://localhost:8000/generateEmbeddedRetoolURL', 
+        {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                username: 'specialuser',
+            }),
+        }
+    ) 
+    return (await res.json()).embedUrl;
+}
+
+getEmbedUrl().then((retoolEmbedUrl) => {
+    embeddedRetool = createRetoolEmbed({
+        src: retoolEmbedUrl,
+        style: "border: 1px solid blue; height: 98%; width: 100%;",
+        data: {advancedUser: false},
+        onData: (data) => {
+            handleRetoolClick(data)
+        }
+    });
+    container.appendChild(embeddedRetool)
+});
+
+```
+
 #### Generating an embed URL 
 
-Ensure you generate the embed URL on a secure, authenticated backend server. Follow our[documentation](https://docs.retool.com/apps/external/quickstarts/embed#3-create-an-embed-url) for detailed instructions.
+Ensure you generate the embed URL on a secure, authenticated backend server. Follow our [documentation](https://docs.retool.com/apps/external/quickstarts/embed#3-create-an-embed-url) for detailed instructions.
