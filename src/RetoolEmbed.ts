@@ -85,7 +85,7 @@ export class RetoolEmbed extends HTMLElement {
   private postMessageForSelector = (messageType: string, eventData: any) => {
     const maybeData = this.data ? this.data[eventData.selector] : null;
 
-    if (maybeData !== null) {
+    if (maybeData !== null && maybeData !== undefined) {
       this.iframe?.contentWindow?.postMessage(
         {
           type: messageType,
