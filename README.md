@@ -2,7 +2,7 @@
 
 Easily embed [Retool](https://retool.com) apps into your existing web applications to extend their functionality. 
 
-If your Retool applications don't require authentication, you can generate a [public link](https://docs.retool.com/apps/web/guides/embed-apps) for your source URL. You can also authenticate users into embedded Retool apps by [integrating Retool with your identity provider](https://docs.retool.com/apps/web/guides/embed-apps#user-authentication-with-an-identity-provider), or [generating](https://docs.retool.com/apps/external/quickstarts/embed#authentication-flow) a secure embed URL through the Retool API. 
+If your Retool applications don't require authentication, you can generate a [public link](https://docs.retool.com/apps/web/guides/embed-apps) for your source URL. You can also authenticate users into embedded Retool apps by [integrating Retool with your identity provider](https://docs.retool.com/apps/web/guides/embed-apps#sso), or [generating](https://docs.retool.com/apps/external/quickstarts/embed#authentication-flow) a secure embed URL through the Retool API. 
 
 ## Installation
 
