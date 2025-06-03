@@ -104,7 +104,7 @@ export class RetoolEmbed extends HTMLElement {
 
   connectedCallback() {
     // defaults for the iframe
-    this.iframe.sandbox.add("allow-scripts", "allow-same-origin");
+    this.iframe.sandbox.add("allow-scripts", "allow-same-origin", "allow-downloads", "allow-popups", "allow-forms");
     this.iframe.title = "Retool Embed";
 
     // initial attributes
